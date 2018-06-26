@@ -1,0 +1,778 @@
+library(memory_45nm) {
+
+    time_unit        : "1ns";
+    voltage_unit        : "1V";
+    current_unit        : "1mA";
+    leakage_power_unit    : "1mW";
+    nom_process        : 1;
+    nom_temperature        : 25.000;
+    nom_voltage        : 5;
+    capacitive_load_unit     (1,pf);
+    pulling_resistance_unit          : "1kohm";
+        default_leakage_power_density : 0.0;
+        default_intrinsic_fall : 0.1;
+        default_inout_pin_fall_res : 0;
+        default_fanout_load : 1;
+        default_intrinsic_rise : 0.1;
+        default_slope_rise : 0;
+        default_output_pin_fall_res : 0;
+        default_inout_pin_cap : 0.02;
+        default_input_pin_cap : 0.02;
+        default_slope_fall : 0;
+        default_inout_pin_rise_res : 0;
+        default_output_pin_cap : 0.02;
+        default_output_pin_rise_res : 0;
+        slew_derate_from_library      : 1;
+        slew_lower_threshold_pct_fall : 20.0;
+        slew_upper_threshold_pct_fall : 80.0;
+        slew_lower_threshold_pct_rise : 20.0;
+        slew_upper_threshold_pct_rise : 80.0;
+        input_threshold_pct_fall      : 50.0;
+        input_threshold_pct_rise      : 50.0;
+        output_threshold_pct_fall     : 50.0;
+        output_threshold_pct_rise     : 50.0;
+    operating_conditions(typical) {
+        process     : 1;
+        temperature : 25.000;
+        voltage     : 5;
+    }
+    type (bus13) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 13;
+        bit_from : 12;
+        bit_to : 0 ;
+        downto : true ;
+    }
+    type (bus15) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 15;
+        bit_from : 14;
+        bit_to : 0 ;
+        downto : true ;
+    }
+    type (bus32) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 32;
+        bit_from : 31;
+        bit_to : 0 ;
+        downto : true ;
+    }
+    type (bus8) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 8;
+        bit_from : 7;
+        bit_to : 0 ;
+        downto : true ;
+    }
+    type (bus16) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 15;
+        bit_from : 15;
+        bit_to : 0 ;
+        downto : true ;
+    }
+
+cell(sram32x8192_sync) {
+    cell_leakage_power     : 0.236; /* In mW unit specified at technology section */
+    area         : 415371; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.665;
+    }
+    bus(RDATA1)     {
+        bus_type : bus32;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.04;
+        }
+    }
+    bus(RDATA2)     {
+        bus_type : bus32;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.04;
+        }
+    }
+
+    bus(WDATA1) {
+        bus_type : bus32;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+    }
+    bus(ADDR2) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(REN2) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input;
+    }
+  }
+  
+cell(sram8x8192_sync) {
+    cell_leakage_power     : 0.06411; /* In mW unit specified at technology section */
+    area         : 118431.320; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.665;
+    }
+    bus(RDATA1)     {
+        bus_type : bus8;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 0.826;
+        }
+    }
+    bus(RDATA2)     {
+        bus_type : bus8;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 0.826;
+        }
+    }
+
+    bus(WDATA1) {
+        bus_type : bus8;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+    }
+    bus(ADDR2) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(REN2) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input;
+    }
+  }
+  
+
+cell(sram8x8192_async) {
+    cell_leakage_power     : 0.0517568508605; /* In mW unit specified at technology section */
+    area         : 39402.4085391; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.434378835043;
+    }
+
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input;
+    }
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.434378835043;
+            intrinsic_rise : 0.434378835043;
+            related_pin : "WEN1";
+        }
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.434378835043;
+            intrinsic_rise : 0.434378835043;
+            related_pin : "REN1";
+        }
+    }
+    
+    bus(RDATA1)     {
+        bus_type : bus8;
+        direction : output;
+        timing(){
+            related_bus_pins : "ADDR1";
+            timing_sense : non_unate;
+            intrinsic_rise : 0.757460549033;
+            intrinsic_fall : 0.757460549033;
+        }
+    }
+    bus(WDATA1) {
+        bus_type : bus8;
+        capacitance : 0.02;
+        direction : input;
+    }
+  }
+
+cell(sram32x32768_sync) {
+    cell_leakage_power     : 0.858; /* In mW unit specified at technology section */
+    area         : 1385747; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.6999;
+    }
+    bus(RDATA1)     {
+        bus_type : bus32;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.475;
+        }
+    }
+    bus(RDATA2)     {
+        bus_type : bus32;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.475;
+        }
+    }
+
+    bus(WDATA1) {
+        bus_type : bus32;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    bus(ADDR1) {
+        bus_type : bus15;
+        capacitance : 0.02;
+        direction : input;
+    }
+    bus(ADDR2) {
+        bus_type : bus15;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(REN2) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input;
+    }
+  }
+  
+cell(sram8x32768_sync) {
+    cell_leakage_power     : 0.2073; /* In mW unit specified at technology section */
+    area         : 344522.4; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.676347;
+    }
+    bus(RDATA1)     {
+        bus_type : bus8;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.04446;
+        }
+    }
+    bus(RDATA2)     {
+        bus_type : bus8;
+        direction : output;
+        timing(){
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.04446;
+        }
+    }
+
+    bus(WDATA1) {
+        bus_type : bus8;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    bus(ADDR1) {
+        bus_type : bus15;
+        capacitance : 0.02;
+        direction : input;
+    }
+    bus(ADDR2) {
+        bus_type : bus15;
+        capacitance : 0.02;
+        direction : input;
+    }
+
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(REN2) {
+        capacitance : 0.02;
+        direction : input;
+    }    
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input;
+    }
+  }
+  
+cell(sram32x8192_async) {
+    memory() {
+        type : ram;
+        address_width : 13;
+        word_width : 32;
+    }
+    cell_leakage_power     : 0.236;
+    area         : 415371; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input; }
+    pin(REN2) {
+        capacitance : 0.02;
+        direction : input; }
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true; }
+    
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.665;
+            intrinsic_rise : 0.665;
+            related_pin : "WEN1";
+        }
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.665;
+            intrinsic_rise : 0.665;
+            related_pin : "REN1";
+        }
+    }
+    bus(ADDR2) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.665;
+            intrinsic_rise : 0.665;
+            related_pin : "REN2";
+        }
+    }
+
+    bus(WDATA1) {
+        bus_type : bus32;
+        capacitance : 0.144;
+        direction : input;
+        memory_write() {
+            address : ADDR1;
+            clocked_on : WEN1
+        }
+        timing() {
+            timing_type : setup_rising;
+            intrinsic_fall : 0.665;
+            intrinsic_rise : 0.665;
+            related_pin : "WEN1";
+        }
+    }
+
+    bus(RDATA1)     {
+        bus_type : bus32;
+        direction : output;
+        capacitance : 0.097;
+        memory_read() {
+            address : ADDR1;
+        }
+        three_state : "REN1";
+        timing() {
+            /* Access time delay */
+            related_bus_pins : "ADDR1";
+            timing_sense : non_unate;
+            intrinsic_rise : 1.04;
+            intrinsic_fall : 1.04;
+        }
+    }
+    bus(RDATA2)     {
+        bus_type : bus32;
+        direction : output;
+        capacitance : 0.097;
+        memory_read() {
+            address : ADDR2;
+        }
+        three_state : "REN2";
+        timing() {
+            /* Access time delay */
+            related_bus_pins : "ADDR2";
+            timing_sense : non_unate;
+            intrinsic_rise : 1.04;
+            intrinsic_fall : 1.04;
+        }
+    }
+  }
+  
+cell(sram16x8192_async) {
+    cell_leakage_power : 0.10131996;
+    area         : 68665; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.57556; }
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input; }
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input; }
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.4546;
+            intrinsic_rise : 0.4546;
+            related_pin : "WEN1"; }
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.8125;
+            intrinsic_rise : 0.8125;
+            related_pin : "REN1"; } }
+    bus(WDATA1) {
+        bus_type : bus16;
+        capacitance : 0.144;
+        direction : input;
+    timing() {
+        timing_type : setup_rising;
+        intrinsic_fall : 0.4546;
+        intrinsic_rise : 0.4546;
+        related_pin : "WEN1"; } }
+    bus(RDATA1) {
+        bus_type : bus16;
+        direction : output;
+        capacitance : 0.097;
+        three_state : "REN1";
+        timing() {
+            related_bus_pins : "ADDR1";
+            timing_sense : non_unate;
+            intrinsic_rise : 0.8125;
+            intrinsic_fall : 0.8125; } } }
+            
+cell(sram16x8192_async_high) {
+    cell_leakage_power : 0.10131996;
+    area         : 68665; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.57556; }
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input; }
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input; }
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.4546;
+            intrinsic_rise : 0.4546;
+            related_pin : "WEN1"; }
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.8125;
+            intrinsic_rise : 0.8125;
+            related_pin : "REN1"; } }
+    bus(WDATA1) {
+        bus_type : bus16;
+        capacitance : 0.144;
+        direction : input;
+    timing() {
+        timing_type : setup_rising;
+        intrinsic_fall : 0.4546;
+        intrinsic_rise : 0.4546;
+        related_pin : "WEN1"; } }
+    bus(RDATA1) {
+        bus_type : bus16;
+        direction : output;
+        capacitance : 0.097;
+        three_state : "REN1";
+        timing() {
+            related_bus_pins : "ADDR1";
+            timing_sense : non_unate;
+            intrinsic_rise : 0.8125;
+            intrinsic_fall : 0.8125; } } }
+            
+cell(sram16x8192_async_low) {
+    cell_leakage_power : 0.10131996;
+    area         : 68665; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.57556; }
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input; }
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input; }
+    bus(ADDR1) {
+        bus_type : bus13;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.4546;
+            intrinsic_rise : 0.4546;
+            related_pin : "WEN1"; }
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.8125;
+            intrinsic_rise : 0.8125;
+            related_pin : "REN1"; } }
+    bus(WDATA1) {
+        bus_type : bus16;
+        capacitance : 0.144;
+        direction : input;
+    timing() {
+        timing_type : setup_rising;
+        intrinsic_fall : 0.4546;
+        intrinsic_rise : 0.4546;
+        related_pin : "WEN1"; } }
+    bus(RDATA1) {
+        bus_type : bus16;
+        direction : output;
+        capacitance : 0.097;
+        three_state : "REN1";
+        timing() {
+            related_bus_pins : "ADDR1";
+            timing_sense : non_unate;
+            intrinsic_rise : 0.8125;
+            intrinsic_fall : 0.8125; } } }
+  
+cell(sram16x8192_sync) {
+    cell_leakage_power     : 0.10131996;
+        area         : 68665; /* In um^2 unit which Nangate uses */
+        dont_use     : TRUE;
+        dont_touch     : TRUE;
+        pin(CLK) {
+            capacitance : 0.02;
+            direction : input;
+            clock : true;
+            min_period : 0.57556; }
+        pin(REN1) {
+            capacitance : 0.02;
+            direction : input; }
+        pin(WEN1) {
+            capacitance : 0.02;
+            direction : input; }
+        bus(ADDR1) {
+            bus_type : bus13;
+            capacitance : 0.02;
+            direction : input;
+            timing() {
+                timing_type : setup_rising; 
+                intrinsic_fall : 0.4546;
+                intrinsic_rise : 0.4546;
+                related_pin : "WEN1"; }
+            timing() {
+                timing_type : setup_rising; 
+                intrinsic_fall : 0.8125;
+                intrinsic_rise : 0.8125;
+                related_pin : "REN1"; } }
+        bus(WDATA1) {
+            bus_type : bus16;
+            capacitance : 0.144;
+            direction : input;
+            timing() {
+                timing_type : setup_rising;
+                intrinsic_fall : 0.4546;
+                intrinsic_rise : 0.4546;
+                related_pin : "WEN1"; } }
+        bus(RDATA1) {
+            bus_type : bus16;
+            direction : output;
+            capacitance : 0.097;
+            three_state : "REN1";
+            timing() {
+                related_bus_pins : "ADDR1";
+                timing_sense : non_unate;
+                intrinsic_rise : 0.8125;
+                intrinsic_fall : 0.8125; } } }
+  
+  
+cell(sram16x32768_sync) {
+    cell_leakage_power     : 0.378128; /* In mW unit specified at technology section */
+    area         : 296124.759; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.57556; }
+    bus(RDATA1) {
+        bus_type : bus32;
+        direction : output;
+        timing() {
+            related_pin : "CLK" ;
+            timing_type : rising_edge;
+            timing_sense : non_unate;
+            intrinsic_rise : 1.03289; } }
+    bus(WDATA1) {
+        bus_type : bus32;
+        capacitance : 0.02;
+        direction : input; }
+    bus(ADDR1) {
+        bus_type : bus15;
+        capacitance : 0.02;
+        direction : input; }
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input; }    
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input; } }
+
+
+cell(sram16x32768_async) {
+    cell_leakage_power     : 0.378128;
+    area         : 296124.759; /* In um^2 unit which Nangate uses */
+    dont_use     : TRUE;
+    dont_touch     : TRUE;
+    pin(CLK) {
+        capacitance : 0.02;
+        direction : input;
+        clock : true;
+        min_period : 0.57556; }
+    pin(REN1) {
+        capacitance : 0.02;
+        direction : input; }
+    pin(WEN1) {
+        capacitance : 0.02;
+        direction : input; }
+    bus(ADDR1) {
+        bus_type : bus15;
+        capacitance : 0.02;
+        direction : input;
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 0.57556;
+            intrinsic_rise : 0.57556;
+            related_pin : "WEN1"; }
+        timing() {
+            timing_type : setup_rising; 
+            intrinsic_fall : 1.03289;
+            intrinsic_rise : 1.03289;
+            related_pin : "REN1"; } }
+    bus(WDATA1) {
+        bus_type : bus16;
+        capacitance : 0.144;
+        direction : input;
+        timing() {
+            timing_type : setup_rising;
+            intrinsic_fall : 0.57556;
+            intrinsic_rise : 0.57556;
+            related_pin : "WEN1"; } }
+    bus(RDATA1)     {
+        bus_type : bus16;
+        direction : output;
+        capacitance : 0.097;
+        three_state : "REN1";
+        timing() {
+            related_bus_pins : "ADDR1";
+            timing_sense : non_unate;
+            intrinsic_rise : 1.03289;
+            intrinsic_fall : 1.03289; } } }
+}
+
