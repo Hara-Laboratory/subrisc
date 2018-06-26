@@ -1,5 +1,5 @@
 # SubRISC
-Simple Instruction-Set Computer for IoT edge devices
+## Simple Instruction-Set Computer for IoT edge devices
 We have developed a small and energy-efficient RISC processor, called SubRISC, which has the limited number of simple instructions extended from Subtract and branch on NeGative with 4 operands (SNG4).
 The processor is described in synthesizable Verilog HDL by Synopsys Design Compiler. 
 
