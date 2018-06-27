@@ -27,7 +27,7 @@ dc_shell > write_lib -f db NangateOpenCellLibrary -o lib/nangate45-typ-ccs.db
 ```
 ### Prepare SubRISC Memory Initialization Files
 It means assembling SubRISC programs and placing them at hdl/hex/ directory.
-OiscSim provides assembling SubRISC programs and generates two hex files (\*_h.hex and \*_l.hex).
+OiscSim (refer https://github.com/Hara-Laboratory/oiscsim) provides assembling SubRISC programs and generates two hex files (\*_h.hex and \*_l.hex).
 Place them at hdl/hex/ directory, and modify hdl/memory_45nm.v by names of two files.
 ### Run eval.sh
 By executing the following commands, you will obtain the number of executed cycles, circuit area, and power consumption about synthesized SubRISC.
